@@ -9,6 +9,14 @@
   git remote add origin https://github.com/Adarsha-React/FoodOrderApp.git
   git push -u origin main )
 
+SSL issue:
+try this and re-try to push
+
+git config --global http.sslbackend schannel
+
+git config --global user.email "adarshareact2023@gmail.com"
+git config --global user.name "Adarsha-React"
+
 - Configured npm init (package.json file was added from it)
 - Installed below packages - npm install react - npm install react-dom - npm install -D parcel (this is using dev dependency)
 
@@ -35,4 +43,13 @@
 
 Added .gitignore file - Added /node_modules - /dist - .parcel-cache
 
-finally - npm parcel index.html to run the app on localhost
+# finally - npm parcel index.html to run the app on localhost
+
+Tailwind :
+https://tailwindcss.com/docs/guides/parcel
+npm install -D tailwindcss postcss
+npx tailwindcss init
+
+created .postcssrc
+create index.css and three lines
+added index.css in index.html file using <link> tag
