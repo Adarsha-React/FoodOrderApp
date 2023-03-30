@@ -8,6 +8,12 @@
   git branch -M main
   git remote add origin https://github.com/Adarsha-React/FoodOrderApp.git
   git push -u origin main )
+SSL issue:
+Use this command to resolve SSL issue: git config --global http.sslbackend schannel
+then try git push -u origin main
+
+git config --global user.email "adarshareact2023@gmail.com"
+git config --global user.name "Adarsha-React"
 
 SSL issue:
 try this and re-try to push
