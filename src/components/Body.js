@@ -1,7 +1,16 @@
+import RestaurantCard from "./RestaurantCard";
+
 const Body = () => {
   return (
-    <div>
-      <h3>Body Component</h3>
+    <div className="flex flex-wrap">
+      <RestaurantCard />
+      <RestaurantCard />
+      <RestaurantCard />
+      <RestaurantCard />
+      <RestaurantCard />
+      <RestaurantCard />
+      <RestaurantCard />
+      <RestaurantCard />
     </div>
   );
 };

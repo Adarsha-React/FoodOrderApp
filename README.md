@@ -8,9 +8,9 @@
   git branch -M main
   git remote add origin https://github.com/Adarsha-React/FoodOrderApp.git
   git push -u origin main )
-SSL issue:
-Use this command to resolve SSL issue: git config --global http.sslbackend schannel
-then try git push -u origin main
+  SSL issue:
+  Use this command to resolve SSL issue: git config --global http.sslbackend schannel
+  then try git push -u origin main
 
 git config --global user.email "adarshareact2023@gmail.com"
 git config --global user.name "Adarsha-React"
@@ -59,3 +59,27 @@ npx tailwindcss init
 created .postcssrc
 create index.css and three lines
 added index.css in index.html file using <link> tag
+=============
+Deleted all files like node_modules, dist, and parcel-cache
+we can re-create.
+if node_module is deleted mean, all install packages are also delete from the app, so we have run the below command to add all required packages to our project
+
+- npm install
+
+this is how we do on production system as well, we will not node_modules into "dist" folder during the production build.
+
+--added script tags
+
+- "start": "parcel index.html" ==> we can use npm run start/ npm start
+- "build": "parcel build index.html" - for production build (check/remove main in package.json)
+
+- configured, .babelrc file to remove colose.log statements
+  npm install babel-plugin-transform-remove-console --save-dev
+  =============================================
+
+  Header, login, restarant cards created
+
+- useState hook used to check login and logout status
+- Logo added from image folder
+- Login - Logout function added at high level with conditional rendering
+- Object create with restaurant and used the same object to pull the data in restaurant card.
