@@ -17,9 +17,9 @@ const Header = () => {
       <Title />
       <div className="flex justify-end">
         <ul className="flex">
-          <li className="p-2 m-2 text-xl">Home</li>
-          <li className="p-2 m-2 text-xl">About</li>
-          <li className="p-2 m-2 text-xl">Cart</li>
+          <li className="p-2 m-2 text-xl hover:text-orange-500">Home</li>
+          <li className="p-2 m-2 text-xl  hover:text-orange-500">About</li>
+          <li className="p-2 m-2 text-xl  hover:text-orange-500">Cart</li>
         </ul>
         <UserLogin />
       </div>
