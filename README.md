@@ -8,6 +8,12 @@
   git branch -M main
   git remote add origin https://github.com/Adarsha-React/FoodOrderApp.git
   git push -u origin main )
+SSL issue:
+Use this command to resolve SSL issue: git config --global http.sslbackend schannel
+then try git push -u origin main
+
+git config --global user.email "adarshareact2023@gmail.com"
+git config --global user.name "Adarsha-React"
 
 - Configured npm init (package.json file was added from it)
 - Installed below packages - npm install react - npm install react-dom - npm install -D parcel (this is using dev dependency)
