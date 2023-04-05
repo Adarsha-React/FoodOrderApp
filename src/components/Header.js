@@ -1,4 +1,5 @@
 import appLogo from "../assets/images/appLogo.png";
+
 import UserLogin from "./UserLogin";
 
 const Title = () => {
@@ -13,13 +14,13 @@ const Title = () => {
 
 const Header = () => {
   return (
-    <div className="flex justify-between shadow-md bg-lime-200">
+    <div className="flex justify-between shadow-md">
       <Title />
       <div className="flex justify-end">
-        <ul className="flex">
-          <li className="p-2 m-2 text-xl hover:text-orange-500">Home</li>
-          <li className="p-2 m-2 text-xl  hover:text-orange-500">About</li>
-          <li className="p-2 m-2 text-xl  hover:text-orange-500">Cart</li>
+        <ul className="flex font-semibold">
+          <li className="p-2 m-2 text-base hover:text-orange-500">Home</li>
+          <li className="p-2 m-2 text-base hover:text-orange-500">About</li>
+          <li className="p-2 m-2 text-base hover:text-orange-500">Cart</li>
         </ul>
         <UserLogin />
       </div>
