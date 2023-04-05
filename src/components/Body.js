@@ -1,6 +1,7 @@
 import RestaurantCard from "./RestaurantCard";
+import Shimmer from "./Shimmer";
 import { restaurantList } from "../constants";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function filterData(searchText, restaurants) {
   const filteredData = restaurants.filter((restaurant) =>
@@ -11,9 +12,32 @@ function filterData(searchText, restaurants) {
 
 const Body = () => {
   const [searchText, setSearchText] = useState("");
-  const [restaurants, setRestaurants] = useState(restaurantList);
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+  const [allRestaurants, setAllRestaurants] = useState([]);
 
-  return (
+  useEffect(() => {
+    getRestaurants();
+  }, []);
+
+  async function getRestaurants() {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9719321&lng=77.512749&page_type=DESKTOP_WEB_LISTING"
+    );
+    const json = await data.json();
+    setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+    setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+  }
+
+  //Conditional rendering
+  //if restaurants empty -> load shimmer UI else load normal body with data
+
+  if (!allRestaurants) return null;
+
+  //if (filteredRestaurants?.length === 0) return <h3>No restaurant found</h3>;
+
+  return allRestaurants?.length === 0 ? (
+    <Shimmer />
+  ) : (
     <>
       <div className="flex justify-center shadow-sm">
         <div className="p-5">
@@ -29,8 +53,8 @@ const Body = () => {
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 m-5 rounded-md"
             onClick={() => {
-              const data = filterData(searchText, restaurants);
-              setRestaurants(data);
+              const data = filterData(searchText, allRestaurants);
+              setFilteredRestaurants(data);
             }}
           >
             Search
@@ -39,19 +63,19 @@ const Body = () => {
       </div>
 
       <div>
-        <div className="flex justify-between border border-1">
+        <div className="flex justify-between shadow-sm w-5/6 ml-28">
           <div className="p-5 mx-5  font-bold text-3xl">
-            {restaurants.length} restaurants
+            {filteredRestaurants?.length} restaurants
           </div>
-          <div className="flex justify-end font-normal shadow-sm">
+          <div className="flex justify-end text-sm pt-7">
             <div className="p-5">Rating</div>
             <div className="p-5">Delivery Time</div>
             <div className="p-5">Cost: Low to High</div>
             <div className="p-5">Cost: High to Low</div>
           </div>
         </div>
-        <div className="flex flex-wrap p-5 shadow-md">
-          {restaurants.map((restaurant) => {
+        <div className="flex flex-wrap p-5 w-5/6 ml-28">
+          {filteredRestaurants.map((restaurant) => {
             return (
               <RestaurantCard {...restaurant.data} key={restaurant.data.id} />
             );
