@@ -9,7 +9,7 @@ const RestaurantCard = ({
   costForTwo,
 }) => {
   return (
-    <div className="w-64  p-2 m-2 cursor-pointer  border border-gray-100 hover:shadow-lg">
+    <div className="w-64  p-3 m-5 cursor-pointer  border border-gray-100 hover:shadow-lg rounded-2xl">
       <img alt="burger" src={IMG_CDN + cloudinaryImageId} />
       <h3 className="text-md font-bold">{name}</h3>
       <small>{cuisines.join(", ")}</small>
