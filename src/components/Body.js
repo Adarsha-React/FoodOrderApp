@@ -4,6 +4,7 @@ import { restaurantList } from "../constants";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { filterData } from "../utils/helper";
+import useOnline from "../utils/useOnline";
 
 const Body = () => {
   const [searchText, setSearchText] = useState("");
@@ -21,6 +22,16 @@ const Body = () => {
     const json = await data.json();
     setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
     setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+  }
+
+  const isOnline = useOnline();
+
+  if (!isOnline) {
+    return (
+      <h2 className="font-bold text-lg">
+        🔴 Offline, please check your internet!!
+      </h2>
+    );
   }
 
   //Conditional rendering
