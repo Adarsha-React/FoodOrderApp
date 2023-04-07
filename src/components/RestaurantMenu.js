@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { IMG_CDN } from "../constants";
 import Shimmer from "./Shimmer";
 import useRestaurant from "../utils/useRestaurant";
+import { useState } from "react";
 
 const RestaurantMenu = () => {
   const params = useParams();
@@ -9,25 +10,52 @@ const RestaurantMenu = () => {
 
   //const [restaurant, setRestaurant] = useState({});
 
-  const restaurant = useRestaurant(resId);
+  const [restaurant, restaurantInfo] = useRestaurant(resId);
+
+  console.log(restaurant, restaurantInfo);
 
   return !restaurant ? (
     <Shimmer />
   ) : (
-    <div className="flex py-10 m-5">
-      <div>
+    <div className="flex">
+      <div className="">
+        <h2 className="m-5 font-bold">{restaurantInfo?.name}</h2>
         <img
-          className="w-80"
-          alt="restaurat"
-          src={IMG_CDN + restaurant?.cloudinaryImageId}
+          alt="resImage"
+          className="w-80 h-56 pl-2 m-2"
+          src={IMG_CDN + restaurantInfo?.cloudinaryImageId}
         />
-        <h1 className="font-bold text-lg">Restaurant Id: {restaurant?.id}</h1>
-        <h2 className="font-bold text-lg">{restaurant?.name}</h2>
-
-        <h2 className="font-bold"> {restaurant?.areaName}</h2>
-        <h2 className="font-bold">{restaurant?.city}</h2>
-        <h2 className="font-bold">{restaurant?.areaPostalCode}</h2>
-        <h2 className="py-3 font-bold">Ratings: {restaurant?.avgRating}</h2>
+        <h2 className="ml-5 text-sm ">
+          {restaurantInfo?.cuisines?.join(", ")}
+        </h2>
+        <h2 className="ml-5 font-bold">{restaurantInfo?.areaName}</h2>
+        <h2 className="ml-5 font-bold">{restaurantInfo?.city}</h2>
+      </div>
+      <div className="p-10 m-5">
+        <h1 className="font-bold text-xl p-2 shadow-sm bg-gray-100">
+          Item List
+        </h1>
+        {restaurant.map((item) => (
+          <div key={item?.card?.info?.id}>
+            <ul className="flex justify-between p-3 m-5 shadow-md">
+              <div>
+                <h2 className="font-bold py-1">{item?.card?.info?.name}</h2>
+                <h2 className="text-sm">
+                  Cost: {item?.card?.info?.price / 100}
+                </h2>
+                <h2 className="text-sm">
+                  Ratings: ⭐
+                  {item?.card?.info?.ratings?.aggregatedRating?.rating}
+                </h2>
+              </div>
+              <img
+                className="w-80 h-56 pl-5"
+                alt="itemImage"
+                src={IMG_CDN + item?.card?.info?.imageId}
+              />
+            </ul>
+          </div>
+        ))}
       </div>
     </div>
   );
