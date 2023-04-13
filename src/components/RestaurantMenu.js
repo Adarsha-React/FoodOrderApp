@@ -36,7 +36,7 @@ const RestaurantMenu = () => {
           Item List
         </h1>
         {restaurant.map((item) => (
-          <div key={item?.card?.info?.id}>
+          <div key={item?.card?.info?.id} className="max-w-full">
             <ul className="flex justify-between p-3 m-5 shadow-md">
               <div>
                 <h2 className="font-bold py-1">{item?.card?.info?.name}</h2>
@@ -49,7 +49,7 @@ const RestaurantMenu = () => {
                 </h2>
               </div>
               <img
-                className="w-80 h-56 pl-5"
+                className="w-40 h-32 pl-5"
                 alt="itemImage"
                 src={IMG_CDN + item?.card?.info?.imageId}
               />

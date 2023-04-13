@@ -3,6 +3,8 @@ import appLogo1 from "../assets/images/logo.png";
 import { Link } from "react-router-dom";
 import UserLogin from "./UserLogin";
 import useOnline from "../utils/useOnline";
+import { useContext } from "react";
+import UserContext from "../utils/UserContext";
 
 const Title = () => {
   return (
@@ -16,7 +18,8 @@ const Title = () => {
 
 const Header = () => {
   const isOnline = useOnline();
-  console.log(isOnline);
+
+  const user = useContext(UserContext);
 
   return (
     <div className="flex justify-between shadow-md">
@@ -27,8 +30,14 @@ const Header = () => {
             {!isOnline ? (
               <h5 className="w-2">🔴</h5>
             ) : (
-              <h5 className="w-0">🟢</h5>
+              <div className="flex">
+                <h1 className="font-bold pr-3">{user.name}</h1>
+                <h5 className="w-0">🟢</h5>
+              </div>
             )}
+          </li>
+          <li className="p-2 m-2 text-base hover:text-orange-500">
+            <Link to="/instamart">Instamart</Link>
           </li>
           <li className="p-2 m-2 text-base hover:text-orange-500">
             <Link to="/">Home</Link>
