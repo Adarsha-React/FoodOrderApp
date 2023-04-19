@@ -1,57 +1,43 @@
 import { useState } from "react";
 
-const Section = ({ title, description, isVisible, setIsVisible }) => {
-  //const [isVisible, setIsVisible] = useState(false);
-
+const Section = ({ title, description, isVisible, onShow }) => {
+  console.log(onShow, isVisible);
   return (
-    <div className="border border-black m-2 p-2">
-      <h2 className="font-bold text-lg">{title}</h2>
+    <div className="shadow-md m-2 p-2 border border-2">
+      <h1 className="text-lg font-bold">{title}</h1>
       {isVisible ? (
-        <button
-          onClick={() => setIsVisible(false)}
-          className="font-bold bg-blue-500 shadow-sm rounded-md px-2 "
-        >
-          Hide
-        </button>
+        <h1 className="text-lg">{description}</h1>
       ) : (
         <button
-          onClick={() => setIsVisible(true)}
-          className="font-bold bg-blue-500 shadow-sm rounded-md px-2"
+          className="bg-blue-500 rounded-md px-1 font-bold"
+          onClick={onShow}
         >
           Show
         </button>
       )}
-
-      {isVisible && <p>{description}</p>}
     </div>
   );
 };
 
 const Instamart = () => {
-  const [visibleSection, setVisibleSection] = useState("team");
-
+  const [isVisible, setIsVisible] = useState("about");
   return (
-    <div className="shadow-lg">
-      <h2 className="font-bold text-3xl text-green-500 ">Instamart</h2>
+    <div>
       <Section
         title={"About"}
-        description={"This section is about Instamart"}
-        isVisible={visibleSection === "about"}
-        setIsVisible={() => setVisibleSection("about")}
-      />
-      <Section
-        title={"Team"}
-        description={"This section is Team of Instamart"}
-        isVisible={visibleSection === "team"}
-        setIsVisible={() => setVisibleSection("team")}
-      />
-      <Section
-        title={"Products"}
         description={
-          "This section is for products which are available in Instamart"
+          "With a population of about 2 million, Almaty is Kazakhstan's largest city. From 1929 to 1997, it was its capital city"
         }
-        isVisible={visibleSection === "products"}
-        setIsVisible={() => setVisibleSection("products")}
+        isVisible={isVisible === "about"}
+        onShow={() => setIsVisible("about")}
+      />
+      <Section
+        title={"Help"}
+        description={
+          "With a population of about 2 million, Almaty is Kazakhstan's largest city. From 1929 to 1997, it was its capital city"
+        }
+        isVisible={isVisible === "help"}
+        onShow={() => setIsVisible("help")}
       />
     </div>
   );
