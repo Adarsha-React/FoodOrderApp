@@ -88,3 +88,29 @@ this is how we do on production system as well, we will not node_modules into "d
 
   - You can check my food Ordering Application.
     http://localhost:1234/
+
+=== Redux tool kit - Chapter 12
+
+- Create store using configureStore() API from RTK
+  - const store = configureStore({});
+- Provide the created store to MyApp
+  - using <Provider store = {store} /> component - this is imported from react-redux
+- Create Slice
+
+  - using createSlice from RTK
+
+    - name: "",
+    - intialSte:
+    - reducers: {
+
+      - actions: addItem: (state, action) => {
+        directly modify the state.
+        }
+        }
+
+    - export reducer
+    - export actions
+
+- finally put the slice into store.
+  - using reducer: {
+  }

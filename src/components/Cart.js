@@ -1,7 +1,14 @@
+import { useSelector } from "react-redux";
+
 const Cart = () => {
+  const cartItems = useSelector((store) => store.cart.items);
+
+  console.log(cartItems);
   return (
     <div className="w-screen m-5 h-64 shadow-md">
-      <h2 className="font-bold m-2 p-2">Cart Items</h2>
+      {cartItems.map((item) => (
+        <div key={item.id}>{item.name}</div>
+      ))}
     </div>
   );
 };

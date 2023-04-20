@@ -5,6 +5,7 @@ import UserLogin from "./UserLogin";
 import useOnline from "../utils/useOnline";
 import { useContext } from "react";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 const Title = () => {
   return (
@@ -20,6 +21,8 @@ const Header = () => {
   const isOnline = useOnline();
 
   const user = useContext(UserContext);
+
+  const cartItems = useSelector((store) => store.cart.items);
 
   return (
     <div className="flex justify-between shadow-md">
@@ -46,7 +49,7 @@ const Header = () => {
             <Link to="/about">About</Link>
           </li>
           <li className="p-2 m-2 text-base hover:text-orange-500">
-            <Link to="/cart">Cart</Link>
+            <Link to="/cart">Cart - {cartItems.length}</Link>
           </li>
         </ul>
         <UserLogin />

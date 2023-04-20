@@ -2,7 +2,8 @@ import { useParams } from "react-router-dom";
 import { IMG_CDN } from "../constants";
 import Shimmer from "./Shimmer";
 import useRestaurant from "../utils/useRestaurant";
-import { useState } from "react";
+import { addItem } from "../utils/cartSlice";
+import { useDispatch } from "react-redux";
 
 const RestaurantMenu = () => {
   const params = useParams();
@@ -12,7 +13,11 @@ const RestaurantMenu = () => {
 
   const [restaurant, restaurantInfo] = useRestaurant(resId);
 
-  console.log(restaurant, restaurantInfo);
+  const dispatch = useDispatch();
+
+  const handleAddItem = (itemInfo) => {
+    dispatch(addItem(itemInfo));
+  };
 
   return !restaurant ? (
     <Shimmer />
@@ -47,6 +52,14 @@ const RestaurantMenu = () => {
                   Ratings: ⭐
                   {item?.card?.info?.ratings?.aggregatedRating?.rating}
                 </h2>
+                <div>
+                  <button
+                    className="bg-green-400 rounded-md px-2 my-2 font-bold text-sm"
+                    onClick={() => handleAddItem(item?.card?.info)}
+                  >
+                    Add
+                  </button>
+                </div>
               </div>
               <img
                 className="w-40 h-32 pl-5"
